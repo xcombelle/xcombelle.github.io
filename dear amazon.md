@@ -12,4 +12,5 @@ Xavier
 
 discuss:
 
-* reddit https://www.reddit.com/r/amazon/comments/5tci1c/dear_amazon_im_definitely_an_angry_consumer/
+* reddit:  [https://www.reddit.com/r/amazon/comments/5tci1c/dear_amazon_im_definitely_an_angry_consumer/](https://www.reddit.com/r/amazon/comments/5tci1c/dear_amazon_im_definitely_an_angry_consumer/)
+* hacker news [https://news.ycombinator.com/item?id=13621295](https://news.ycombinator.com/item?id=13621295)
