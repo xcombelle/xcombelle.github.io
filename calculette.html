@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html manifest="cache-manifest">
+<event-source src="server.cgi">
+
+	<head>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+
+		<script>
+			var state = { last_operation: "=",
+				      transiant: true,
+				      register: 0,
+				      last_input: 0
+				    
+				}
+
+			function digit(state, input) {
+				var input = parseInt(input);
+				console.log(input);
+				if (state.transiant) {
+					state.register =  input;
+					state.transiant = false;
+					} else {
+					   
+					  state.register*=10;
+					  state.register+=input;
+					}
+				console.log(state);
+				return state;
+				}
+			function operation(state, input) {
+				switch (state.last_operation) {
+
+					case 'x': state.register = state.last_input * state.register;
+						 break;
+					case '+':
+						state.register = state.last_input+ state.register;
+						break;
+					case '/':
+						state.register = state.last_input / state.register;
+						break;
+					case '-':
+						state.register = state.last_input - state.register;
+						break;
+					case '=':
+						break;
+					default:
+						window.alert("ALARM 2")
+						console.log(state.last_operartion);
+					}
+
+					state.last_operation = input;
+					state.last_input= state.register;
+							state.transiant = true;
+				return state;
+			}
+						
+			function f(input) {
+				switch (input) {
+					case '1':
+					case '2':
+					case '3':
+					case '4':
+					case '5':
+					case '6':
+					case '7':
+					case '8':
+					case '9':
+					case '0':
+					    state= digit(state, input);
+					    
+					    break;
+					case '+':
+					case '-':
+				 	case '/':
+					case 'x':
+					case '=':
+					    state = operation(state, input);;
+					    break;
+					case '.':
+					case '+/-':
+					case 'AC':
+					case '%' :
+					    window.alert("ALARM");
+					    break;
+				        default:
+					    window.alert("ALARM AMARM");
+					    break;
+					}
+
+							console.log(state.register.toString());
+				document.getElementById("result").value= state.register.toString();
+
+				}
+			
+
+		</script>
+<style>
+table {
+
+	/* width: 100%; */
+	border-collapse: collapse;
+}
+td {
+border:1px solid #000000;
+width: 4em;
+height:4em;
+}
+</style>
+
+	</head>
+	<body>
+	<input id="result" value="0" >
+	<table   >
+		<tr> 
+			<td onclick="f('AC')">AC</td> 
+			<td onlclick="f('+/-')">+/-</td> 
+			<td onclick="f('%')">%</td> 
+			<td onclick="f('/')"> /</td> 
+		</tr>
+		
+		<tr> 
+			<td onclick="f('7')">7</td> 
+			<td onclick="f('8')">8</td> 
+			<td onclick="f('9')">9</td> 	
+			<td onclick="f('x')">x</td> 
+		</tr>
+		<tr> 
+			<td onclick="f('4')">4</td> 
+			<td onclick="f('5')">5</td> 
+			<td onclick="f('6')">6</td> 	
+			<td onclick="f('-')">-</td> 
+		</tr>
+		<tr> 
+			<td onclick="f('1')">1</td> 
+			<td onclick="f('2')">2</td> 
+			<td onclick="f('3')">3</td> 	
+			<td onclick="f('+')">+</td> 
+		</tr>
+		<tr> 
+			<td colspan="2" onclick="f('0')">0</td> 
+			<td onclick="f('.')">.</td> 	
+			<td onclick="f('=')">=</td> 
+		</tr>
+	</table>
+	</body>
+</html>
+
+
+
