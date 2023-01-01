@@ -1,1 +1,1 @@
-[calculatrice](/calculatrice.html)
+[calculette](/calculette.html)
