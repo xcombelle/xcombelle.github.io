@@ -1,0 +1,20 @@
+<pre>
+<script>
+function primeFactorization() {
+  for (let i = 2; i <= 1000; i++) {
+    let factors = [];
+    let num = i;
+    for (let j = 2; j <= num; j++) {
+      while (num % j === 0) {
+        factors.push(j);
+        num /= j;
+      }
+    }
+factors.reverse();
+    document.write(i + ": " + factors.join("x"));
+  }
+}
+
+</script>
+
+</pre>
