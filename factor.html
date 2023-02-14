@@ -1,23 +1,30 @@
-<pre>
-<script>
-function primeFactorization() {
-  
-  
-  
-  for (let i = 2; i <= 1000; i++) {
-    let factors = [];
-    let num = i;
-    for (let j = 2; j <= num; j++) {
-      while (num % j === 0) {
-        factors.push(j);
-        num /= j;
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prime Factorization</title>
+  </head>
+  <body>
+    <div id="results"></div>
+    <script>
+      function primeFactorization() {
+        for (let i = 2; i <= 1000; i++) {
+          let factors = [];
+          let num = i;
+          for (let j = 2; j <= num; j++) {
+            while (num % j === 0) {
+              factors.push(j);
+              num /= j;
+            }
+          }
+          factors.reverse();
+          let resultString = i + ": " + factors.join("x");
+          let resultNode = document.createElement("p");
+          let resultText = document.createTextNode(resultString);
+          resultNode.appendChild(resultText);
+          document.getElementById("results").appendChild(resultNode);
+        }
       }
-    }
-factors.reverse();
-    document.write(i + ": " + factors.join("x"));
-  }
-}
-primeFactorization();
-</script>
-
-</pre>
+      primeFactorization();
+    </script>
+  </body>
+</html>
