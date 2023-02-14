@@ -2,6 +2,11 @@
 <html>
   <head>
     <title>Prime Factorization</title>
+    <style>
+      body {
+        font-family: "Courier New", Courier, monospace;
+      }
+    </style>
   </head>
   <body>
     <div id="results"></div>
@@ -17,8 +22,8 @@
             }
           }
           factors.reverse();
-          let resultString = i + ": " + factors.join("x")+"<br>";
-          let resultNode = document.createElement("pre");
+          let resultString = i + ": " + factors.join(" x ");
+          let resultNode = document.createElement("p");
           let resultText = document.createTextNode(resultString);
           resultNode.appendChild(resultText);
           document.getElementById("results").appendChild(resultNode);
