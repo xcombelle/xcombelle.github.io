@@ -18,7 +18,7 @@
           }
           factors.reverse();
           let resultString = i + ": " + factors.join("x")+"<br>";
-          let resultNode = document.createElement("p");
+          let resultNode = document.createElement("pre");
           let resultText = document.createTextNode(resultString);
           resultNode.appendChild(resultText);
           document.getElementById("results").appendChild(resultNode);
