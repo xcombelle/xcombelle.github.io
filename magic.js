@@ -3,6 +3,7 @@
 }
 	var target;
 var words;
+var
 function process(wordlist) {
 
 
@@ -116,10 +117,10 @@ document.getElementById("nombre_lettres").value);
 
        } ).then( (text) => {
                process(text);
+document.getElementById("nouveau_mot").addEventListener('click', (event)=>{process(text)});
        });
 }
 document.addEventListener("keypress", execute); 
-document.getElementById("nouveau_mot").addEventListener('click', (event)=>{process(text)});
 
 document.getElementById("nombre_lettres").addEventListener('change', load);
 
