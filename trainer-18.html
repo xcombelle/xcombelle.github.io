@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+	function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+	var target;
+	function process(wordlist) {
+	words = wordlist.split("\n");
+	 target=words[getRandomInt(words.length)];
+
+
+
+var x='';
+
+found=[true]
+	for (let i=1;i!=target.length+1; i++) {
+	x+=' ';
+		found.push(false);
+}
+
+
+
+s="<!DOCTYPE html>"+
+		'<pre><span id="result"></span>'+
+	"<span id='next'><span style='background-color:red;color:white'>"+target[0]+"</span>"+"<span style='background-color:green;color:white'>"+x+"</span></span></pre>"+
+
+		"<input id='entry' style='font-family:monospace'> "+
+		
+'<script>words='+JSON.stringify(words)+'<'+'/script>'+
+
+'<script src="magic.js">'+
+'</'+'script>';
+document.write(s);
+}
+
+	fetch("/ods/18.txt").then(
+	(response) => {
+		return response.text();
+
+	} ).then( (text) => {
+		process(text);
+	});
+</script>
+</body>
+
+</html>)
