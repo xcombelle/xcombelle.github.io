@@ -2,21 +2,40 @@
 <html>
 <body>
 <script>
-
 	function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
-
-function process(wordlist) {
-//#console.log(wordlist);
-;
+	var target;
+	function process(wordlist) {
 	words = wordlist.split("\n");
-console.log(words);	
+	 target=words[getRandomInt(words.length)];
 
-	document.write(words[getRandomInt(words.length)]);
+
+
+var x='';
+
+found=[true]
+	for (let i=1;i!=target.length+1; i++) {
+	x+=' ';
+		found.push(false);
 }
-console.log(location.hash);
-	fetch("/ods/"+location.hash.substring(1)+".txt").then(
+
+
+
+s="<!DOCTYPE html>"+
+		'<pre><span id="result"></span>'+
+	"<span id='next'><span style='background-color:red;color:white'>"+target[0]+"</span>"+"<span style='background-color:green;color:white'>"+x+"</span></span></pre>"+
+
+		"<input id='entry' style='font-family:monospace'> "+
+		
+'<script>words='+JSON.stringify(words)+'<'+'/script>'+
+
+'<script src="magic.js">'+
+'</'+'script>';
+document.write(s);
+}
+
+	fetch("/ods/"+(new URL(document.location)).searchParams.get("n")+".txt").then(
 	(response) => {
 		return response.text();
 
