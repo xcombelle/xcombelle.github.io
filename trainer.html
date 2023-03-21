@@ -2,17 +2,28 @@
 <html>
 <body>
 <script>
+
+	function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function process(wordlist) {
- words = wordlist.split();
+//#console.log(wordlist);
+;
+	words = wordlist.split("\n");
+console.log(words);	
+
 	document.write(words[getRandomInt(words.length)]);
 }
-fetch("http://xcombelle.github.io/ods8.txt").then(
+console.log(location.hash);
+	fetch("/ods/"+location.hash.substring(1)+".txt").then(
 	(response) => {
+		return response.text();
 
-		process(response.text())
-	}
-);
+	} ).then( (text) => {
+		process(text);
+	});
 </script>
 </body>
 
-</html>
+</html>)
