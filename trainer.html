@@ -1,48 +1,36 @@
 <!DOCTYPE html>
 <html>
-<body>
-<script>
-	function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-	var target;
-	function process(wordlist) {
-	words = wordlist.split("\n");
-	 target=words[getRandomInt(words.length)];
+	<head>
+<style>
+body, input,select,button
+	{
 
-
-
-var x='';
-
-found=[true]
-	for (let i=1;i!=target.length; i++) {
-	x+=' ';
-		found.push(false);
+	font-family:monospace;
+	font-size:35px;
 }
 
+</style>
 
 
-s="<!DOCTYPE html>"+
-		'<pre><span id="result"></span>'+
-	"<span id='next'><span style='background-color:red;color:white'>"+target[0]+"</span>"+"<span style='background-color:green;color:white'>"+x+"</span></span></pre>"+
 
-		"<input id='entry' style='font-family:monospace' autofocus> "+
-		
-'<script>words='+JSON.stringify(words)+'<'+'/script>'+
+	</head>
+	<body>
+<div>
+Nombre de lettres <select  id="nombre_lettres" type="select" >
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8" selected>8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+</select>
+</div>
+<button id="nouveau_mot">nouveau mot</button>
+<pre><span id="result"></span><span id='next'></span></pre>
+	<input id='entry'  autofocus>
 
-'<script src="magic.js">'+
-'</'+'script>';
-document.write(s);
-}
-
-	fetch("/ods/{{n}}.txt").then(
-	(response) => {
-		return response.text();
-
-	} ).then( (text) => {
-		process(text);
-	});
+<script src="magic.js">
 </script>
 </body>
 
-</html>)
+</html>
