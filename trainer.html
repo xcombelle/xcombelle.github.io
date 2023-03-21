@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+function process(wordlist) {
+ words = wordlist.split();
+	document.write(words[getRandomInt(words.length)]);
+}
+fetch("http://xcombelle.github.io/ods8.txt").then(
+	(response) => {
+
+		process(response.text())
+	}
+);
+</script>
+</body>
+
+</html>
