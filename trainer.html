@@ -35,7 +35,7 @@ s="<!DOCTYPE html>"+
 document.write(s);
 }
 
-	fetch("/ods/"+(new URL(document.location)).searchParams.get("n")+".txt").then(
+	fetch("/ods/{{n}}.txt").then(
 	(response) => {
 		return response.text();
 

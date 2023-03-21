@@ -51,7 +51,7 @@ return word[i];
 
 function format2(guess,target){
 var		r="";
-for (let i=0;i!== guess.length;i++) {
+for (let i=0;i!== target.length;i++) {
 		r+='<span style="color:white;background-color:'+(found[i]==true?"red":"green")+'">'+(found[i]?target[i]:" ")+'</span>';
 }
 		return r+'\n';
