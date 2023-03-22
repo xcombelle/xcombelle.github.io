@@ -3,7 +3,6 @@
 }
 	var target;
 var words;
-var
 function process(wordlist) {
 
 
