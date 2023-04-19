@@ -1,0 +1,146 @@
+<DOCTYP (vaE! html>
+<html>
+	<body>
+	<button id="pierre">PIERRE</button>
+	<button id="papier">PAPIER</button>
+	<button id="ciseaux">CISEAUX</button>
+	
+
+	<div  id="human_result">0</div>
+	<div  id="ia_result">0</div>
+
+
+<script>
+	var history = [];
+	var human = null;
+	var nextAI = null;
+
+function equal(arr1, start1, arr2, start2, depth) {
+  var i = start1;
+  var j = start2;
+  while (i < arr1.length && j < arr2.length && j - start2 < depth) {
+    if (arr1[i] !== arr2[j]) {
+      return false;
+    }
+    i++;
+    j++;
+  }
+  return true;
+}
+
+    function total_match(candidate, history, depth) {
+  var value = null;
+  var counts = { "feuille":0, "papier":0, "ciseaux": 0};
+  var value_best = counts["feuille"];
+  var best = ["feuille"];
+  
+  for (var i = 0; i < history.length; i++) {
+    if (i === 0) {
+      continue;
+    }
+    
+    if (equal(candidate, 0, history, i, depth)) {
+      value = history[i][0];
+      if (counts[value]) {
+        counts[value]++;
+      } else {
+        counts[value] = 1;
+      }
+    };
+  }
+
+  var key; 
+  key = "ciseaux";
+
+  if (counts[key] === value_best) {
+    best.push(key);
+  } else if (counts[key] > value_best) {
+    best = [key];
+    value_best = counts[key];
+  }
+  
+  key = "papier";
+  if (counts[key] === value_best) {
+    best.push(key);
+  } else if (counts[key] > value_best) {
+    best = [key];
+    value_best = counts[key];
+  }
+		if (value_best ==0) {
+			return null;
+		}
+  return best;
+
+	}
+
+
+	function guess(history) {
+		candidate =[... history];
+		for(let depth = history.length; depth!==-1; depth --) {
+			let t = total_matcho(candidate, history, depth);
+				if (t !== null) {
+
+				return t[Math.floor(Math.random() * t.length)];
+				}
+			candidate.pop()
+
+		}
+		return null;
+
+	}
+	var nextAI = guess(history);
+
+	var succes_ia =0;
+	var succes_human =0:
+
+	function score(human, ia) {
+
+  if (joueur1 === joueur2) {
+    // Cas d'un match nul
+    return resultat;
+  }
+
+  if ((joueur1 === "feuille" && joueur2 === "papier") || 
+      (joueur1 === "papier" && joueur2 === "ciseaux") || 
+      (joueur1 === "ciseaux" && joueur2 === "feuille")) {
+    succes_ia ++;
+  } else {
+    succes_human ++ ;;
+  }
+
+	ia_result.text = succes_ia.to_string();
+	human_result.text = succe s_ia.to_string()
+u return resultat;
+}
+
+
+
+	const pierre = document.getElementById("pierre");
+	const papier  = document.getElementById("papier");
+	const ciseaux = document.getElementById("ciseaux");
+
+	const ia_result = document.getElementById("ia_result");
+	const human_result = document.getElementById("human_result");
+
+
+	pierre.addEventListener('click', (event) => {
+		score(value("pierre", nextAI)));
+		history.unshift("pierre");
+		result.text
+
+	nextAI = guess(history);
+	}
+	papier.addEventListener('click', (event) => {
+		score(value("papier", nextAI)));
+		history.unshift("papier");
+		nextAI = guess(history);
+	}
+	ciseaux.addEventListener('click', (event) => {
+		score(value("ciseaux", nextAI)));
+		history.unshift("ciseaux");
+		nextAI = guess(history);
+	}
+	
+
+</script>
+</body>
