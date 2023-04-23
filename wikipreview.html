@@ -1,42 +1,47 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Random Wikipedia Summary</title>
 </head>
 <body>
-   
-  <input type="button" onclick="window.location.reload()">RELOAD</input>
-  
   <div id="summary"></div>
-  
+  <button onclick="loadRandomSummary()">Load Another</button>
   <script>
-    
-    fetch('https://fr.wikipedia.org/api/rest_v1/page/random/summary', {
-  headers: {
-    'Accept': 'application/problem+json'
-  }
-})
-  .then(response => response.json())
-  .then(data => {
-    const extractHtml = data.extract_html;
-    const thumbnail = data.thumbnail;
-    
-    const summaryDiv = document.querySelector('#summary');
-    const p = document.createElement('p');
-    p.innerHTML = extractHtml;
-    summaryDiv.appendChild(p);
-    
-    if (thumbnail) {
-      const img = document.createElement('img');
-      img.src = thumbnail.source;
-      img.width = thumbnail.width;
-      img.height = thumbnail.height;
-      summaryDiv.appendChild(img);
+    function loadRandomSummary() {
+      // Clear previous content
+      const summaryDiv = document.querySelector('#summary');
+      summaryDiv.innerHTML = '';
+      
+      // Load new summary
+      fetch('https://en.wikipedia.org/api/rest_v1/page/random/summary', {
+        headers: {
+          'Accept': 'application/problem+json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          const extractHtml = data.extract_html;
+          const thumbnail = data.thumbnail;
+          
+          const p = document.createElement('p');
+          p.innerHTML = extractHtml;
+          summaryDiv.appendChild(p);
+          
+          if (thumbnail) {
+            const img = document.createElement('img');
+            img.src = thumbnail.source;
+            img.width = thumbnail.width;
+            img.height = thumbnail.height;
+            summaryDiv.appendChild(img);
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
-  })
-  .catch(error => {
-    console.error(error);
-  });
+
+    // Load first summary on page load
+    loadRandomSummary();
   </script>
 </body>
 </html>
