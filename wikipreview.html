@@ -17,9 +17,9 @@
 })
   .then(response => response.json())
   .then(data => {
-    j= JSON.parse(data);
+   
     
-    document.write(j.extract_html);
+    document.write(data.extract_html);
     
     
     // handle the response data as desired
