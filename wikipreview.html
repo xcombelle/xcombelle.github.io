@@ -4,22 +4,36 @@
   <title>Random Wikipedia Summary</title>
 </head>
 <body>
+   <div id="summary"></div>
+  
   <script>
+    
     fetch('https://en.wikipedia.org/api/rest_v1/page/random/summary', {
-      headers: {
-        'Accept': 'application/problem+json'
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        const extractHtml = data.extract_html;
-        const p = document.createElement('p');
-        p.innerHTML = extractHtml;
-        document.body.appendChild(p);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  headers: {
+    'Accept': 'application/problem+json'
+  }
+})
+  .then(response => response.json())
+  .then(data => {
+    const extractHtml = data.extract_html;
+    const thumbnail = data.thumbnail;
+    
+    const summaryDiv = document.querySelector('#summary');
+    const p = document.createElement('p');
+    p.innerHTML = extractHtml;
+    summaryDiv.appendChild(p);
+    
+    if (thumbnail) {
+      const img = document.createElement('img');
+      img.src = thumbnail.source;
+      img.width = thumbnail.width;
+      img.height = thumbnail.height;
+      summaryDiv.appendChild(img);
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
   </script>
 </body>
 </html>
