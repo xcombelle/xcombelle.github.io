@@ -1,7 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="preview.js"></script>
+  <script src="preview.js">
+  
+  
+  
+  fetch(
+  'https://en.wikipedia.org/api/rest_v1/page/random/summary'
+  ,
+  headers: {
+    'Accept': 'accept: application/problem+json'
+  }
+})
+  .then(response => response.json())
+  .then(data => {
+    j= JSON.parse(data);
+    
+    document.write(j.extract_html);
+    
+    
+    // handle the response data as desired
+  })
+  .catch(error => {
+    console.error(error);
+    // handle any errors that occur
+  });
+
+  
+  </script>
   
   </head>
 </html>
