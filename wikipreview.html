@@ -1,36 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  hello;
-  
+  <title>Random Wikipedia Summary</title>
+</head>
+<body>
   <script>
-  
-  
-  
-  fetch(
-  'https://en.wikipedia.org/api/rest_v1/page/random/summary'
-  ,
-    {
+    fetch('https://en.wikipedia.org/api/rest_v1/page/random/summary', {
       headers: {
-    'Accept': 'accept: application/problem+json'
+        'Accept': 'application/problem+json'
       }
-})
-  .then(response => response.json())
-  .then(data => {
-   
-    
-    document.write(data.extract_html);
-    
-    
-    // handle the response data as desired
-  })
-  .catch(error => {
-    console.error(error);
-    // handle any errors that occur
-  });
-
-  
+    })
+      .then(response => response.json())
+      .then(data => {
+        const extractHtml = data.extract_html;
+        const p = document.createElement('p');
+        p.innerHTML = extractHtml;
+        document.body.appendChild(p);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   </script>
-  
-  </head>
+</body>
 </html>
