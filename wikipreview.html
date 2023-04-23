@@ -4,8 +4,11 @@
   <title>Random Wikipedia Summary</title>
 </head>
 <body>
-   <div id="summary"></div>
-  <button onclick="document.reload()">RELOAD</button>
+   
+  <input type="button" onclick="document.reload()">RELOAD</input>
+  
+  <div id="summary"></div>
+  
   <script>
     
     fetch('https://fr.wikipedia.org/api/rest_v1/page/random/summary', {
