@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Random Wikipedia Summary</title>
-  <style>* {font-family: monospace;}</style>
+  <title>Summary Aléatoire Wikipédia</title>
+  <style>
+    body {
+      font-family: monospace;
+    }
+    #summary {
+      margin-top: 2em;
+    }
+    #load-button {
+      display: block;
+      margin-top: 2em;
+    }
+  </style>
 </head>
 <body>
-  
- 
-
-  <button onclick="loadRandomSummary()">Load Another</button>
-   <div id="summary"></div>
+  <button id="load-button" onclick="loadRandomSummary()">Charger un autre</button>
+  <div id="summary"></div>
   <script>
     function loadRandomSummary() {
       // Clear previous content
-      const summaryDiv = document.querySelector('#summary');
+      const summaryDiv = document.getElementById('summary');
       summaryDiv.innerHTML = '';
       
       // Load new summary
-      fetch('https://en.wikipedia.org/api/rest_v1/page/random/summary', {
+      fetch('https://fr.wikipedia.org/api/rest_v1/page/random/summary', {
         headers: {
-          'Accept': 'application/problem+json'
+          'Accept-Language': 'fr',
+          'Accept': 'application/json'
         }
       })
         .then(response => response.json())
