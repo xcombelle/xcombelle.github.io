@@ -10,9 +10,10 @@
   fetch(
   'https://en.wikipedia.org/api/rest_v1/page/random/summary'
   ,
-  headers: {
+    {
+      headers: {
     'Accept': 'accept: application/problem+json'
-  
+      }
 })
   .then(response => response.json())
   .then(data => {
