@@ -28,7 +28,7 @@
       fetch('https://fr.wikipedia.org/api/rest_v1/page/random/summary', {
         headers: {
           'Accept-Language': 'fr',
-          'Accept': 'application/json'
+          'Accept': 'application/problem-json'
         }
       })
         .then(response => response.json())
