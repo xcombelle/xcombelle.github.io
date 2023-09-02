@@ -124,6 +124,6 @@ function change_number_lettre(event) {
         });
     });
 }
-document.addEventListener("keypress", word_validate);
+document.addEventListener("keyup", word_validate);
 
 document.getElementById("nombre_lettres").addEventListener('change', change_number_lettre);
