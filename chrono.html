@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<style>
+<span id="countdown"></span>
+<script>
+document.getElementById("countdown").addEventListener("click",f);
+var toggle= false;
+car countdown = true;
+function f(event){
+toggle = !toggle;
+countdown = 30;
+
+}
+function g(event){
+if(toggle) {
+countdown +=1
+}
+if(countdown>30){
+document.getElementById("countdown").style.backgroundColor("green");
+} else {
+document.getElementById("countdown").style.backgroundColor("red");
+}
+document.setInterval(1000,g);
+</script>
