@@ -50,7 +50,12 @@ document.getElementById("countdown").innerText=c;
   var countdown = maxcountdown;
 function f(event){
 countdown = 0;
+c=countdown.toString();
+if(countdown<10){
+  c="0"+c;
+}
 
+document.getElementById("countdown").innerText=c;
 }
 
 function g(event){
