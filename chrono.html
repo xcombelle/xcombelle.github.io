@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <style>
-<span id="countdown" style="width:100%;height:100%;font:monospace, 10em;">0/span>
+<span id="countdown"></span>
 <script>
 document.getElementById("countdown").addEventListener("click",f);
 var toggle= false;
@@ -16,9 +16,9 @@ countdown +=1
 }
 if(countdown>30){
 document.getElementById("countdown").style.backgroundColor("green");
+countdown=30;
 } else {
 document.getElementById("countdown").style.backgroundColor("red");
-}}
-  
+}
 document.setInterval(1000,g);
 </script>
