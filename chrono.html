@@ -18,7 +18,11 @@ toggle = !toggle;
 countdown = 30;
 
 }
+
+  alert("la");
 function g(event){
+
+  alert("ici");
 if(toggle) {
 countdown +=1
 }
@@ -30,5 +34,5 @@ document.getElementById("countdown").style.backgroundColor="red";
 }
 document.getElementById("countdown").innerText=countdown;
 }
-  document.setInterval(g,1000);
+window.setInterval(g,1000);
 </script>
