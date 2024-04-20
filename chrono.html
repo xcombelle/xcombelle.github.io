@@ -27,8 +27,13 @@ document.getElementById  ("countdown").style.backgroundColor="light-green";
 countdown=30;
 } else {
 document.getElementById("countdown").style.backgroundColor="light-orange";
+} 
+c=countdown.toString();
+if(countdown<10){
+  c="0"+c;
 }
-document.getElementById("countdown").innerText=countdown;
+
+document.getElementById("countdown").innerText=c;
 }
 window.setInterval(g,1000);
 </script>
