@@ -5,7 +5,7 @@
   height:100%;
   font-family:monospace;
   font-size:50em;
-  background-color:blue;
+  background-color:light-blue;
 }
   </style>
 <span id="countdown">30</span>
@@ -23,10 +23,10 @@ function g(event){
 countdown +=1
 
 if(countdown>30){
-document.getElementById  ("countdown").style.backgroundColor="green";
+document.getElementById  ("countdown").style.backgroundColor="light-green";
 countdown=30;
 } else {
-document.getElementById("countdown").style.backgroundColor="orange";
+document.getElementById("countdown").style.backgroundColor="light-orange";
 }
 document.getElementById("countdown").innerText=countdown;
 }
