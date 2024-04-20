@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <style>
-* {
+body {
+    cursor: pointer;
+}
+
+span {
     font-family:monospace;
-   /* font-size:1em; */
+   font-size:10rem; 
   background-color:gray;
-  width: 2em;
-  height: 10em;
+
 }
 #countdown {
-  width:6em;
+
 }
   
   </style>
-<span id="-">-</span>
+<span id="moins">-</span>
 <span id="countdown">30</span>
-<span id="+">+</span>
+<span id="plus">+</span>
 <script>
 document.getElementById("countdown").addEventListener("click",f);
-document.getElementById("-").addEventListener("click",() => {maxcountdown-=5});
-document.getElementById("-").addEventListener("click",() => { maxcountdown-=5});
+document.getElementById("moins").addEventListener("click",
+() => {
+    maxcountdown-=5;
+    countdown=maxcountdown;
+    document.getElementById("countdown").style.backgroundColor="gray";
+    c=countdown.toString();
+if(countdown<10){
+  c="0"+c;
+}
 
-  var maxcountdown = 30
+document.getElementById("countdown").innerText=c;
+
+
+ });
+document.getElementById("plus").addEventListener("click",
+() => { maxcountdown+=5; 
+    countdown=maxcountdown;
+    document.getElementById  ("countdown").style.backgroundColor="gray";
+    c=countdown.toString();
+if(countdown<10){
+  c="0"+c;
+}
+
+document.getElementById("countdown").innerText=c;
+ });
+
+  var maxcountdown = 30;
   var countdown = maxcountdown;
 function f(event){
 countdown = 0;
@@ -31,9 +57,9 @@ function g(event){
 
 countdown +=1
 
-if(countdown>= maxcountdown;){
-document.getElementById  ("countdown").style.backgroundColor="green";
-countdown=   maxcountdown;;
+if(countdown>= maxcountdown){
+document.getElementById  ("countdown").style.backgroundColor="gray";
+countdown=   maxcountdown;
 } else {
 document.getElementById("countdown").style.backgroundColor="orange";
 } 
