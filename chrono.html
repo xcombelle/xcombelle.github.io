@@ -11,24 +11,22 @@
 <span id="countdown">30</span>
 <script>
 document.getElementById("countdown").addEventListener("click",f);
-var toggle= false;
+
 var countdown = 30;
 function f(event){
-toggle = !toggle;
-countdown = 30;
+countdown = 0;
 
 }
 
 function g(event){
 
-if(toggle) {
 countdown +=1
-}
+
 if(countdown>30){
 document.getElementById  ("countdown").style.backgroundColor="green";
 countdown=30;
 } else {
-document.getElementById("countdown").style.backgroundColor="red";
+document.getElementById("countdown").style.backgroundColor="orange";
 }
 document.getElementById("countdown").innerText=countdown;
 }
