@@ -20,12 +20,12 @@ span {
 <script>
 document.getElementById("countdown").addEventListener("click",f);
 document.getElementById("moins").addEventListener("click",
-() => {change(-1)
+() => {change(-1);
       });
 document.getElementById("plus").addEventListener("click",
 () => {change(1);});
 document.getElementById("moinsmoins").addEventListener("click",
-() => {change(-5)
+() => {change(-5);
       });
 document.getElementById("plusplus").addEventListener("click",
 () => {change(5);});
@@ -48,10 +48,10 @@ document.getElementById("plusplus").addEventListener("click",
     countdown=maxcountdown;
     document.getElementById("countdown").style.backgroundColor="gray";
     c=countdown.toString();
-if(countdown<10){
-  c="0"+c;
-}
-document.getElementById("countdown").innerText=c;
+        if(countdown<10){
+          c="0"+c;
+        }
+        document.getElementById("countdown").innerText=c;
 
     }
 
@@ -59,21 +59,19 @@ document.getElementById("countdown").innerText=c;
 
 function g(event){
 
-countdown +=1
+ countdown +=1
 
-if(countdown>= maxcountdown){
-document.getElementById  ("countdown").style.backgroundColor="green";
-countdown=   maxcountdown;
-} else {
-document.getElementById("countdown").style.backgroundColor="orange";
-} 
-c=countdown.toString();
-if(countdown<10){
-  c="0"+c;
-}
-document.getElementById("countdown").innerText=c;
+    if(countdown>= maxcountdown){
+    document.getElementById  ("countdown").style.backgroundColor="green";
+    countdown=   maxcountdown;
+    } else {
+    document.getElementById("countdown").style.backgroundColor="orange";
+    } 
+    c=countdown.toString();
+    if(countdown<10){
+      c="0"+c;
+    }
+    document.getElementById("countdown").innerText=c;
 }
 window.setInterval(g,1000);
-/*    
-*/
 </script>
