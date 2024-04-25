@@ -33,8 +33,13 @@ document.getElementById("moinsmoins").addEventListener("click",
 document.getElementById("plusplus").addEventListener("click",
 () => {change(5);});
 
-    var maxcountdown;
-    var countdown;
+
+    function f(event) {
+        countdown=0;
+    g(event);
+    }
+    var maxcountdown=30;
+    var countdown=0;
 
         
     function change(n)
@@ -48,7 +53,7 @@ if(countdown<10){
   c="0"+c;
 }
 document.getElementById("countdown").innerText=c;
-g();
+
     }
 
     
