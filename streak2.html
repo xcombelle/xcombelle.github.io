@@ -5,8 +5,8 @@
   <title>Go Streak</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.json">
+
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -25,87 +25,125 @@
       padding: 24px;
       border-radius: 16px;
       width: 100%;
-      max-width: 360px;
+      max-width: 380px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    h1 {
-      margin-top: 0;
-      font-size: 1.4rem;
     }
 
     .streak {
       font-size: 3rem;
-      margin: 16px 0;
+      margin: 12px 0;
+    }
+
+    textarea {
+      width: 100%;
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+      font-size: 0.9rem;
     }
 
     button {
       width: 100%;
       padding: 12px;
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 1rem;
       border-radius: 12px;
       border: none;
-      cursor: pointer;
     }
 
-    .check {
-      background: #22c55e;
-      color: #022c22;
-    }
-
-    .reset {
-      background: #ef4444;
-      color: white;
-    }
+    .check { background: #22c55e; }
+    .export { background: #38bdf8; }
+    .reset { background: #ef4444; color: white; }
 
     .info {
-      margin-top: 12px;
-      font-size: 0.85rem;
+      margin-top: 8px;
+      font-size: 0.8rem;
       color: #94a3b8;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>🎴 Go — Streak quotidien</h1>
+    <h2>🎴 Go — Streak</h2>
+
     <div class="streak" id="streak">0 🔥</div>
+
     <button class="check" onclick="checkToday()">J’ai fait du Go aujourd’hui</button>
-    <button class="reset" onclick="resetStreak()">Reset</button>
+
+    <textarea id="note" rows="3" placeholder="Note rapide (erreur, focus, idée…)"></textarea>
+
+    <button class="export" onclick="exportData()">Exporter mes données</button>
+    <button class="reset" onclick="resetAll()">Reset</button>
+
     <div class="info" id="info"></div>
   </div>
 
-  <script>
-    const today = () => new Date().toISOString().slice(0, 10);
+<script>
+  const today = () => new Date().toISOString().slice(0,10);
 
-    let data = JSON.parse(localStorage.getItem("go-streak")) || { streak: 0, lastDay: null };
+  let data = JSON.parse(localStorage.getItem("go-streak-v2")) || {
+    streak: 0,
+    lastDay: null,
+    days: {}   // { "YYYY-MM-DD": { note: "..." } }
+  };
 
-    function updateUI() {
-      document.getElementById("streak").textContent = data.streak + " 🔥";
-      document.getElementById("info").textContent = data.lastDay ? "Dernier jour validé : " + data.lastDay : "";
-    }
+  function updateUI() {
+    document.getElementById("streak").textContent = data.streak + " 🔥";
+    document.getElementById("info").textContent =
+      data.lastDay ? "Dernier jour : " + data.lastDay : "";
+    document.getElementById("note").value =
+      data.days[today()]?.note || "";
+  }
 
-    function checkToday() {
-      const t = today();
-      if (data.lastDay === t) return;
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      const y = yesterday.toISOString().slice(0, 10);
-      data.streak = (data.lastDay === y) ? data.streak + 1 : 1;
-      data.lastDay = t;
-      localStorage.setItem("go-streak", JSON.stringify(data));
-      updateUI();
-    }
+  function checkToday() {
+    const t = today();
+    if (data.lastDay === t) return;
 
-    function resetStreak() {
-      if (!confirm("Reset le streak ?")) return;
-      data = { streak: 0, lastDay: null };
-      localStorage.setItem("go-streak", JSON.stringify(data));
-      updateUI();
-    }
+    const y = new Date();
+    y.setDate(y.getDate() - 1);
+    const yesterday = y.toISOString().slice(0,10);
 
-    updateUI();
-  </script>
+    data.streak = (data.lastDay === yesterday) ? data.streak + 1 : 1;
+    data.lastDay = t;
+    data.days[t] = data.days[t] || {};
+
+    save();
+  }
+
+  document.getElementById("note").addEventListener("input", e => {
+    const t = today();
+    data.days[t] = data.days[t] || {};
+    data.days[t].note = e.target.value;
+    save(false);
+  });
+
+  function exportData() {
+    const blob = new Blob(
+      [JSON.stringify(data, null, 2)],
+      { type: "application/json" }
+    );
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "go-streak-export.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function resetAll() {
+    if (!confirm("Tout effacer ?")) return;
+    data = { streak: 0, lastDay: null, days: {} };
+    save();
+  }
+
+  function save(refresh = true) {
+    localStorage.setItem("go-streak-v2", JSON.stringify(data));
+    if (refresh) updateUI();
+  }
+
+  updateUI();
+</script>
 </body>
 </html>
