@@ -1,7 +1,7 @@
 {
   "name": "Go Streak",
   "short_name": "GoStreak",
-  "start_url": "./index.html",
+  "start_url": "./streak2.html",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
@@ -18,3 +18,4 @@
     }
   ]
 }
+
